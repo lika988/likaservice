@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKA service | Servis Profesional & Specialist i Elektronikës</title>
+    <title>LIKAservice | Servis Profesional & Specialist i Elektronikës</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,9 +70,9 @@
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 top-0 glass border-b border-black/5">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-1 text-xl font-bold tracking-tight">
-                <span class="text-[#ff0000]">LIKA</span>
-                <span class="text-black">service</span>
+            <a href="#" class="flex items-center text-xl tracking-tighter">
+                <span class="font-extrabold text-[#ff0000]">LIKA</span>
+                <span class="font-light text-black">service</span>
             </a>
 
             <div class="hidden md:flex items-center gap-8">
@@ -136,8 +136,8 @@
     <section id="pricing" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="fade-in text-center mb-16">
-                <h2 class="text-4xl font-bold text-black mb-4" data-key="pricingHeading">Shërbimet tona</h2>
-                <p class="text-black/50">Lista e plotë e shërbimeve të specializuara dhe çmimet bazë.</p>
+                <h2 class="text-4xl font-bold text-black mb-4" data-key="pricingHeading">Katalogu i Shërbimeve</h2>
+                <p class="text-black/50">I rregulluar sipas kategorive kryesore për lehtësi kërkimi.</p>
             </div>
             <div id="pricing-accordion" class="space-y-4">
                 <!-- Data will be injected here -->
@@ -182,7 +182,7 @@
 
     <!-- FOOTER -->
     <footer class="py-12 text-center text-black/40 text-xs border-t border-black/5">
-        <p>&copy; <span id="year"></span> LIKA service. Të gjitha të drejtat të rezervuara.</p>
+        <p>&copy; <span id="year"></span> LIKAservice. Të gjitha të drejtat të rezervuara.</p>
     </footer>
 
     <script>
@@ -190,109 +190,107 @@
             al: {
                 "nav.services": "Shërbimet", "nav.pricing": "Çmimet", "nav.contact": "Kontakt",
                 "hero.headline_html": `Zgjidhje <span class="text-gradient">Profesionale</span><br>për pajisjet tuaja.`,
-                "pricingHeading": "Shërbimet tona", "hero.cta": "Na Kontakto"
+                "pricingHeading": "Katalogu i Shërbimeve", "hero.cta": "Na Kontakto"
             },
             en: {
                 "nav.services": "Services", "nav.pricing": "Pricing", "nav.contact": "Contact",
                 "hero.headline_html": `Professional <span class="text-gradient">Solutions</span><br>for your devices.`,
-                "pricingHeading": "Our Services", "hero.cta": "Contact Us"
+                "pricingHeading": "Service Catalog", "hero.cta": "Contact Us"
             }
         };
 
         const pricingData = [
             {
-                id: 'comp', icon: '💻', title: { al: 'Computer & Laptop Repair', en: 'Computer & Laptop Repair' },
+                id: 'apple', icon: '🍎', title: { al: 'Apple Devices (iPhone, Mac, iPad)', en: 'Apple Devices' },
                 items: [
-                    { n: { al: 'Formatizim Windows XP–8.1', en: 'Format Windows XP–8.1' }, p: '30€' },
-                    { n: { al: 'Formatizim Windows 10', en: 'Format Windows 10' }, p: '45€' },
-                    { n: { al: 'Formatizim Windows 11', en: 'Format Windows 11' }, p: '50€' },
-                    { n: { al: 'macOS versione të vjetra', en: 'macOS older versions' }, p: '30€' },
-                    { n: { al: 'macOS versionet e fundit', en: 'macOS latest versions' }, p: '100€' },
-                    { n: { al: 'Diagnostikim i avancuar', en: 'Advanced diagnostics' }, p: '25€' },
-                    { n: { al: 'Hardware repair', en: 'Hardware repair' }, p: '50–300€' },
-                    { n: { al: 'Deep cleaning', en: 'Deep cleaning' }, p: '50€' },
-                    { n: { al: 'Thermal paste', en: 'Thermal paste' }, p: '30€' },
-                    { n: { al: 'Upgrade SSD/RAM', en: 'Upgrade SSD/RAM' }, p: '50–150€' },
-                    { n: { al: 'Backup & Cloning', en: 'Backup & Cloning' }, p: '25–80€' },
-                    { n: { al: 'Data Recovery', en: 'Data Recovery' }, p: '50–250€' }
+                    { n: { al: 'Screen / Display Replacement', en: 'Screen Replacement' }, p: '100–300€' },
+                    { n: { al: 'Battery Replacement', en: 'Battery Replacement' }, p: '80–150€' },
+                    { n: { al: 'Logic Board Repair (Micro-soldering)', en: 'Logic Board Repair' }, p: '150–300€' },
+                    { n: { al: 'macOS Software Repair', en: 'macOS Software Repair' }, p: '50–150€' },
+                    { n: { al: 'iPhone/Mac Data Recovery', en: 'Data Recovery' }, p: '100–300€' }
                 ]
             },
             {
-                id: 'storage', icon: '💾', title: { al: 'Storage Repair (SSD / HDD / NVMe)', en: 'Storage Repair' },
-                highlight: { al: 'Specialist në riparime të SSD, NVMe dhe HDD me pajisje profesionale', en: 'Specialist in SSD, NVMe and HDD repairs with professional equipment' },
+                id: 'phone', icon: '📱', title: { al: 'Smartphones & Tablets', en: 'Smartphones & Tablets' },
                 items: [
-                    { n: { al: 'Diagnostikim', en: 'Diagnostics' }, p: '25€' },
-                    { n: { al: 'SSD/NVMe repair', en: 'SSD/NVMe repair' }, p: '80–250€' },
-                    { n: { al: 'HDD repair', en: 'HDD repair' }, p: '50–200€' },
-                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '80–300€' },
-                    { n: { al: 'OS migration', en: 'OS migration' }, p: '50€' }
+                    { n: { al: 'Ekrani (LCD/OLED)', en: 'Screen (LCD/OLED)' }, p: '50–250€' },
+                    { n: { al: 'Ndërrim Baterie', en: 'Battery Replacement' }, p: '50–120€' },
+                    { n: { al: 'Porti i Mbushjes (Charging Port)', en: 'Charging Port' }, p: '50–100€' },
+                    { n: { al: 'Motherboard Repair', en: 'Motherboard Repair' }, p: '100–300€' },
+                    { n: { al: 'Riparim nga Uji (Water Damage)', en: 'Water Damage' }, p: '80–250€' },
+                    { n: { al: 'Software / Unlocking', en: 'Software / Unlocking' }, p: '50€' },
+                    { n: { al: 'Data Recovery', en: 'Data Recovery' }, p: '50–200€' }
                 ]
             },
             {
-                id: 'watch', icon: '⌚', title: { al: 'Smartwatch Repair & Services', en: 'Smartwatch Repair' },
+                id: 'watch', icon: '⌚', title: { al: 'Smartwatch Repair', en: 'Smartwatch Repair' },
                 highlight: { al: 'Specialist në riparime smartwatch me pajisje profesionale dhe diagnostikim preciz', en: 'Smartwatch specialist with professional tools and precise diagnostics' },
                 items: [
-                    { n: { al: 'Screen / Display', en: 'Screen / Display' }, p: '50–150€' },
-                    { n: { al: 'Battery', en: 'Battery' }, p: '50–100€' },
-                    { n: { al: 'Charging issues', en: 'Charging issues' }, p: '50–80€' },
-                    { n: { al: 'Water damage', en: 'Water damage' }, p: '50–150€' },
-                    { n: { al: 'Software / Firmware update', en: 'Software update' }, p: '30–80€' },
-                    { n: { al: 'Diagnostics / Troubleshooting', en: 'Diagnostics' }, p: '25–50€' }
+                    { n: { al: 'Screen / Display Replacement', en: 'Screen / Display' }, p: '50–150€' },
+                    { n: { al: 'Battery Replacement', en: 'Battery' }, p: '50–100€' },
+                    { n: { al: 'Charging Issues / Port', en: 'Charging Issues' }, p: '50–80€' },
+                    { n: { al: 'Water Damage Cleaning', en: 'Water Damage' }, p: '50–150€' },
+                    { n: { al: 'Software / Firmware Update', en: 'Software Update' }, p: '30–80€' },
+                    { n: { al: 'Diagnostics', en: 'Diagnostics' }, p: '25–50€' }
                 ]
             },
             {
-                id: 'apple', icon: '🍎', title: { al: 'Apple Devices (iPhone, iPad, Mac)', en: 'Apple Devices' },
+                id: 'comp', icon: '💻', title: { al: 'Laptops & Computers', en: 'Laptops & Computers' },
                 items: [
-                    { n: { al: 'Screen', en: 'Screen' }, p: '100–300€' },
-                    { n: { al: 'Battery', en: 'Battery' }, p: '80–150€' },
-                    { n: { al: 'Logic board', en: 'Logic board' }, p: '150–300€' },
-                    { n: { al: 'macOS repair', en: 'macOS repair' }, p: '50–150€' },
-                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '100–300€' }
+                    { n: { al: 'Formatizim Windows XP – 8.1', en: 'Format Windows XP – 8.1' }, p: '30€' },
+                    { n: { al: 'Formatizim Windows 10', en: 'Format Windows 10' }, p: '45€' },
+                    { n: { al: 'Formatizim Windows 11', en: 'Format Windows 11' }, p: '50€' },
+                    { n: { al: 'macOS Older / Latest Versions', en: 'macOS Software' }, p: '30–100€' },
+                    { n: { al: 'Diagnostikim i Avancuar', en: 'Advanced Diagnostics' }, p: '25€' },
+                    { n: { al: 'Hardware Repair', en: 'Hardware Repair' }, p: '50–300€' },
+                    { n: { al: 'Deep Cleaning (Pastrim i thellë)', en: 'Deep Cleaning' }, p: '50€' },
+                    { n: { al: 'Thermal Paste Application', en: 'Thermal Paste' }, p: '30€' },
+                    { n: { al: 'Upgrade SSD / RAM', en: 'Upgrade SSD / RAM' }, p: '50–150€' },
+                    { n: { al: 'Backup & Disk Cloning', en: 'Backup & Cloning' }, p: '25–80€' },
+                    { n: { al: 'Advanced Data Recovery', en: 'Data Recovery' }, p: '50–250€' }
                 ]
             },
             {
-                id: 'phone', icon: '📱', title: { al: 'Smartphone & Tablet Repair', en: 'Smartphone Repair' },
+                id: 'storage', icon: '💾', title: { al: 'Storage Specialist (SSD / HDD / NVMe)', en: 'Storage Specialist' },
+                highlight: { al: 'Ekspert në riparime të mediave të ruajtjes me pajisje profesionale laboratorike', en: 'Expert in storage media repair using professional laboratory tools' },
                 items: [
-                    { n: { al: 'Screen', en: 'Screen' }, p: '50–250€' },
-                    { n: { al: 'Battery', en: 'Battery' }, p: '50–120€' },
-                    { n: { al: 'Charging port', en: 'Charging port' }, p: '50–100€' },
-                    { n: { al: 'Motherboard repair', en: 'Motherboard repair' }, p: '100–300€' },
-                    { n: { al: 'Water damage', en: 'Water damage' }, p: '80–250€' },
-                    { n: { al: 'Software repair', en: 'Software repair' }, p: '50€' },
-                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '50–200€' }
+                    { n: { al: 'Diagnostikim Harduerik', en: 'Hardware Diagnostics' }, p: '25€' },
+                    { n: { al: 'SSD / NVMe Repair', en: 'SSD / NVMe Repair' }, p: '80–250€' },
+                    { n: { al: 'HDD Physical Repair', en: 'HDD Repair' }, p: '50–200€' },
+                    { n: { al: 'Data Recovery (Professional)', en: 'Data Recovery' }, p: '80–300€' },
+                    { n: { al: 'OS Migration (Transfer)', en: 'OS Migration' }, p: '50€' }
                 ]
             },
             {
-                id: 'server', icon: '🖥️', title: { al: 'Server & NAS Solutions (Advanced)', en: 'Server & NAS Solutions' },
-                highlight: { al: 'DIY NAS: Build from scratch (TrueNAS / Unraid / Linux). Zgjidhje të personalizuara për performancë maksimale.', en: 'DIY NAS Specialist: Performance tuning & Secure remote access.' },
+                id: 'server', icon: '🖥️', title: { al: 'Server & NAS Solutions', en: 'Server & NAS Solutions' },
+                highlight: { al: 'DIY NAS: Zgjidhje të personalizuara (TrueNAS / Unraid) për performancë maksimale', en: 'DIY NAS: Custom solutions (TrueNAS / Unraid) for maximum performance' },
                 items: [
                     { n: { al: 'NAS Setup (Synology / QNAP)', en: 'NAS Setup' }, p: '100–300€' },
-                    { n: { al: 'DIY NAS (custom-built)', en: 'DIY NAS' }, p: '150–500€' },
-                    { n: { al: 'Custom PC server', en: 'Custom PC server' }, p: '150–400€' },
-                    { n: { al: 'RAID configuration', en: 'RAID configuration' }, p: '100–250€' },
-                    { n: { al: 'Network storage setup', en: 'Network storage' }, p: '80–200€' },
-                    { n: { al: 'User permissions', en: 'User permissions' }, p: '50–150€' },
-                    { n: { al: 'Diagnostics', en: 'Diagnostics' }, p: '50€' },
-                    { n: { al: 'Troubleshooting', en: 'Troubleshooting' }, p: '80–250€' },
-                    { n: { al: 'Data recovery NAS/RAID', en: 'Data recovery' }, p: '150–500€' }
+                    { n: { al: 'DIY NAS Custom Build', en: 'DIY NAS' }, p: '150–500€' },
+                    { n: { al: 'Custom PC Server Build', en: 'Custom Server' }, p: '150–400€' },
+                    { n: { al: 'RAID Configuration & Storage', en: 'RAID Configuration' }, p: '100–250€' },
+                    { n: { al: 'Network Storage Setup', en: 'Network Storage' }, p: '80–200€' },
+                    { n: { al: 'User Permissions & Security', en: 'Security & Permissions' }, p: '50–150€' },
+                    { n: { al: 'Server Troubleshooting', en: 'Troubleshooting' }, p: '80–250€' },
+                    { n: { al: 'NAS/RAID Data Recovery', en: 'RAID Data Recovery' }, p: '150–500€' }
                 ]
             },
             {
                 id: 'cctv', icon: '👁️', title: { al: 'CCTV & Security Systems', en: 'CCTV & Security' },
                 items: [
-                    { n: { al: 'DVR/NVR installation', en: 'DVR/NVR installation' }, p: '50–150€' },
-                    { n: { al: 'IP/Analog camera configuration', en: 'Camera configuration' }, p: '50€' },
-                    { n: { al: 'System repair', en: 'System repair' }, p: '50–200€' },
-                    { n: { al: 'Cabling & signal', en: 'Cabling & signal' }, p: '50€' },
-                    { n: { al: 'Remote access', en: 'Remote access' }, p: '50€' }
+                    { n: { al: 'DVR/NVR Installation', en: 'DVR/NVR Installation' }, p: '50–150€' },
+                    { n: { al: 'IP/Analog Camera Configuration', en: 'Camera Configuration' }, p: '50€' },
+                    { n: { al: 'Security System Repair', en: 'System Repair' }, p: '50–200€' },
+                    { n: { al: 'Cabling & Signal Fix', en: 'Cabling & Signal' }, p: '50€' },
+                    { n: { al: 'Remote Access (Phone/PC)', en: 'Remote Access' }, p: '50€' }
                 ]
             },
             {
-                id: 'backup', icon: '🔄', title: { al: 'Backup & Automation', en: 'Backup & Automation' },
+                id: 'backup', icon: '🔄', title: { al: 'Automation & Backup', en: 'Automation & Backup' },
                 items: [
-                    { n: { al: 'Automatic backup', en: 'Automatic backup' }, p: '80–200€' },
-                    { n: { al: 'Cloud sync', en: 'Cloud sync' }, p: '50–150€' },
-                    { n: { al: 'Remote access VPN', en: 'Remote access VPN' }, p: '80–200€' }
+                    { n: { al: 'Automatic Backup Systems', en: 'Auto Backup' }, p: '80–200€' },
+                    { n: { al: 'Cloud Sync & Configuration', en: 'Cloud Sync' }, p: '50–150€' },
+                    { n: { al: 'Remote Access VPN Setup', en: 'VPN Setup' }, p: '80–200€' }
                 ]
             }
         ];
