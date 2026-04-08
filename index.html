@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIKA service | Servis Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #d4d4d8;
+            scroll-behavior: smooth;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #71717a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+        .red-glow {
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+        }
+        .red-glow-strong:hover {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        .accordion-content.active {
+            max-height: 1200px;
+            opacity: 1;
+            padding-bottom: 2rem;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff0000; }
+
+        @keyframes ping-slow {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .ping-slow {
+            animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#ff0000]/30 selection:text-white">
+
+    <!-- BACKGROUND GLOWS -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#ff0000]/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[#ff0000]/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 top-0 bg-[#050505]/70 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-1 text-2xl font-bold tracking-tighter">
+                <span class="text-[#ff0000]">LIKA</span>
+                <span class="text-white">service</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="text-sm font-medium hover:text-white transition-colors nav-link" data-key="nav.services">Shërbimet</a>
+                <a href="#pricing" class="text-sm font-medium hover:text-white transition-colors nav-link" data-key="nav.pricing">Çmimet</a>
+                <a href="#contact" class="text-sm font-medium hover:text-white transition-colors nav-link" data-key="nav.contact">Kontakt</a>
+                
+                <div class="h-4 w-px bg-white/20 mx-2"></div>
+                
+                <button onclick="toggleLanguage()" id="lang-toggle" class="text-sm font-semibold text-white/70 hover:text-white uppercase transition-colors">
+                    EN
+                </button>
+                
+                <a href="tel:+38349585195" class="bg-white text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#ff0000] hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)] flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span data-key="hero.cta">Na Kontakto Tani</span>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white p-2">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#0a0a0a] border-b border-white/10 px-6 py-8 flex flex-col gap-6 shadow-2xl">
+            <a href="#services" onclick="toggleMobileMenu()" class="text-lg font-medium nav-link" data-key="nav.services">Shërbimet</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="text-lg font-medium nav-link" data-key="nav.pricing">Çmimet</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-lg font-medium nav-link" data-key="nav.contact">Kontakt</a>
+            <a href="tel:+38349585195" class="bg-[#ff0000] text-white px-5 py-4 rounded-xl text-center font-semibold mt-4" data-key="hero.cta">Na Kontakto Tani</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-48 pb-24 px-6 flex flex-col items-center justify-center min-h-[90vh] text-center overflow-hidden z-10">
+        <div class="fade-in inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#ff0000]/30 bg-[#ff0000]/5 text-[#ff0000] text-sm font-medium mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span data-key="hero.quality">Kualitet mbi çmim.</span>
+        </div>
+        
+        <h1 class="fade-in text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] mb-6 max-w-5xl" data-key="hero.headline_html">
+            Servis <span class="text-gradient">Profesional</span><br>për Pajisje Elektronike
+        </h1>
+
+        <p class="fade-in text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed max-w-2xl" data-key="hero.subtext">
+            Riparime të avancuara, diagnostikim preciz dhe kualitet premium. Ekspert në riparime të avancuara board-level & microsoldering.
+        </p>
+
+        <div class="fade-in flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="#pricing" class="px-10 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors text-center" data-key="nav.services">Shërbimet</a>
+            <a href="tel:+38349585195" class="px-10 py-4 bg-[#ff0000] text-white rounded-full font-semibold hover:bg-[#cc0000] transition-colors shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:shadow-[0_0_40px_rgba(255,0,0,0.5)] flex justify-center items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span data-key="hero.cta">Na Kontakto Tani</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- POLICY SECTION -->
+    <section class="px-6 py-12 relative z-10">
+        <div class="fade-in max-w-5xl mx-auto">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] border border-[#ff0000]/20 p-8 md:p-12 shadow-2xl">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#ff0000]/10 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-16 h-16 rounded-2xl bg-[#ff0000]/10 flex items-center justify-center flex-shrink-0">
+                        <svg class="text-[#ff0000]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2" data-key="policy.title">Politika e Pagesës & Diagnostikimi</h3>
+                        <p class="text-zinc-400 text-lg leading-relaxed" data-key="policy.desc">Tarifë fillestare 25€ për çdo shërbim (e pakthyeshme). Kjo përfshin diagnostikimin e plotë profesional. Pagesa e mbetur kryhet pas përfundimit të suksesshëm të shërbimit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES (Why Choose Us) -->
+    <section id="services" class="py-24 px-6 bg-[#0a0a0a] border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="fade-in text-3xl md:text-4xl font-bold text-white mb-16 text-center" data-key="servicesHeading">Ekspertiza Jonë</h2>
+            <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING ACCORDION -->
+    <section id="pricing" class="py-24 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" data-key="pricingHeading">Çmimet & Shërbimet</h2>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto" data-key="pricingSubtext">Transparencë e plotë. Lista jonë gjithëpërfshirëse e shërbimeve dhe çmimeve bazë.</p>
+            </div>
+
+            <div id="pricing-accordion" class="space-y-4">
+                <!-- Categories Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 px-6 bg-[#0a0a0a] border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold text-white mb-12" data-key="contactHeading">Na Vizitoni</h2>
+                <div class="space-y-10">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-2xl bg-[#ff0000]/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="text-[#ff0000]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-1">Phone / WhatsApp</h4>
+                            <a href="tel:+38349585195" class="text-xl text-zinc-400 hover:text-white transition-colors tracking-wide">+383 49 585 195</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-2xl bg-[#ff0000]/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="text-[#ff0000]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-1" data-key="contact.address">Adresa</h4>
+                            <p class="text-xl text-zinc-400" data-key="contact.addressVal">Fushë Kosovë, Kosovë</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-2xl bg-[#ff0000]/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="text-[#ff0000]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-1" data-key="contact.hours">Orari i Punës</h4>
+                            <p class="text-xl text-zinc-400" data-key="contact.hoursVal">08:00 – 16:00, E Hënë - E Premte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in">
+                <div class="bg-[#111] p-8 md:p-12 rounded-[2.5rem] border border-white/5 text-center relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-[#ff0000]/10 rounded-full blur-[60px]"></div>
+                    <h3 class="text-2xl font-bold text-white mb-4" data-key="footer.ctaTitle">Gati për të riparuar pajisjen?</h3>
+                    <p class="text-zinc-400 mb-8" data-key="footer.ctaDesc">Ne jemi këtu për t'ju ofruar zgjidhjen më të mirë dhe më të shpejtë.</p>
+                    <a href="tel:+38349585195" class="w-full block py-4 bg-[#ff0000] text-white rounded-xl font-bold text-lg hover:bg-[#cc0000] transition-colors shadow-[0_0_20px_rgba(255,0,0,0.3)] mb-4" data-key="contact.call">Na Telefononi</a>
+                    <a href="https://wa.me/38349585195" target="_blank" class="w-full flex items-center justify-center gap-2 py-4 bg-transparent border border-white/20 text-white rounded-xl font-bold text-lg hover:bg-white/5 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14 8.38 8.38 0 0 1 3.8.9L21 3.5Z"/></svg>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 text-center text-zinc-600 text-sm border-t border-white/5">
+        <p>&copy; <span id="year"></span> LIKA service. All rights reserved.</p>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/38349585195" target="_blank" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 z-50 group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14 8.38 8.38 0 0 1 3.8.9L21 3.5Z"/></svg>
+        <span class="absolute inset-0 rounded-full bg-[#25D366] ping-slow group-hover:hidden"></span>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        const translations = {
+            al: {
+                "nav.services": "Shërbimet",
+                "nav.pricing": "Çmimet",
+                "nav.contact": "Kontakt",
+                "hero.cta": "Na Kontakto Tani",
+                "hero.quality": "Kualitet mbi çmim.",
+                "hero.headline_html": `Servis <span class="text-gradient">Profesional</span><br>për Pajisje Elektronike`,
+                "hero.subtext": "Riparime të avancuara, diagnostikim preciz dhe kualitet premium. Ekspert në riparime të avancuara board-level & microsoldering.",
+                "policy.title": "Politika e Pagesës & Diagnostikimi",
+                "policy.desc": "Tarifë fillestare 25€ për çdo shërbim (e pakthyeshme). Kjo përfshin diagnostikimin e plotë profesional. Pagesa e mbetur kryhet pas përfundimit të suksesshëm të shërbimit.",
+                "servicesHeading": "Ekspertiza Jonë",
+                "pricingHeading": "Çmimet & Shërbimet",
+                "pricingSubtext": "Transparencë e plotë. Lista jonë gjithëpërfshirëse e shërbimeve dhe çmimeve bazë.",
+                "pricing.click": "Kliko për çmimet",
+                "contactHeading": "Na Vizitoni",
+                "contact.address": "Adresa",
+                "contact.addressVal": "Fushë Kosovë, Kosovë",
+                "contact.hours": "Orari i Punës",
+                "contact.hoursVal": "08:00 – 16:00, E Hënë - E Premte",
+                "contact.call": "Na Telefononi",
+                "footer.ctaTitle": "Gati për të riparuar pajisjen?",
+                "footer.ctaDesc": "Ne jemi këtu për t'ju ofruar zgjidhjen më të mirë dhe më të shpejtë."
+            },
+            en: {
+                "nav.services": "Services",
+                "nav.pricing": "Pricing",
+                "nav.contact": "Contact",
+                "hero.cta": "Contact Us Now",
+                "hero.quality": "Quality over price.",
+                "hero.headline_html": `Professional <span class="text-gradient">Electronic</span><br>Device Repair`,
+                "hero.subtext": "Advanced repairs, precise diagnostics, and premium quality. Expert in advanced board-level repairs & microsoldering.",
+                "policy.title": "Payment Policy & Diagnostics",
+                "policy.desc": "Initial non-refundable fee of 25€ per service. This includes a comprehensive professional diagnosis. The remaining balance is paid upon completion.",
+                "servicesHeading": "Our Expertise",
+                "pricingHeading": "Pricing & Services",
+                "pricingSubtext": "Full transparency. Our comprehensive list of services and base pricing.",
+                "pricing.click": "Click for prices",
+                "contactHeading": "Visit Us",
+                "contact.address": "Address",
+                "contact.addressVal": "Fushë Kosovë, Kosovo",
+                "contact.hours": "Working Hours",
+                "contact.hoursVal": "08:00 – 16:00, Monday - Friday",
+                "contact.call": "Call Now",
+                "footer.ctaTitle": "Ready to fix your device?",
+                "footer.ctaDesc": "We are here to provide you with the best and fastest solution."
+            }
+        };
+
+        const featuresData = [
+            { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`, 
+              al: { t: "Pajisje Profesionale", d: "Investim në teknologjinë më të fundit për diagnostikim." },
+              en: { t: "Professional Equipment", d: "Investment in the latest diagnostic technology." }
+            },
+            { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1 2.83 0l.3.3a2 2 0 0 1 0 2.83l-3.77 3.77a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1 2.83 0l.3.3a2 2 0 0 1 0 2.83l-3.77 3.77"></path><path d="m2 22 5-5"></path><path d="M9.5 14.5 16 8"></path><path d="m17 2 5 5"></path><path d="m3.5 14.5 4 4"></path></svg>`, 
+              al: { t: "Microsoldering", d: "Riparime preçize board-level që të tjerët nuk i bëjnë dot." },
+              en: { t: "Microsoldering", d: "Precise board-level repairs others cannot perform." }
+            },
+            { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`, 
+              al: { t: "Diagnostikim i Saktë", d: "Zbulimi i problemit në burim, jo vetëm simptomave." },
+              en: { t: "Accurate Diagnostics", d: "Finding the problem at its source, not just symptoms." }
+            },
+            { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`, 
+              al: { t: "Shërbim i Shpejtë", d: "Efikasitet dhe transparencë gjatë gjithë procesit." },
+              en: { t: "Fast Service", d: "Efficiency and transparency throughout the process." }
+            }
+        ];
+
+        const pricingData = [
+            {
+                id: 'computer',
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg>`,
+                title: { al: 'Riparim Kompjuteri & Laptopi', en: 'Computer & Laptop Repair' },
+                items: [
+                    { name: { al: 'Formatizim Windows XP–8.1', en: 'Windows XP–8.1 Formatting' }, price: '30€' },
+                    { name: { al: 'Formatizim Windows 10', en: 'Windows 10 Formatting' }, price: '45€' },
+                    { name: { al: 'Formatizim Windows 11', en: 'Windows 11 Formatting' }, price: '50€' },
+                    { name: { al: 'macOS versione të vjetra', en: 'macOS older versions' }, price: '30€' },
+                    { name: { al: 'macOS versionet e fundit', en: 'macOS latest versions' }, price: '100€' },
+                    { name: { al: 'Diagnostikim i avancuar', en: 'Advanced diagnostics' }, price: '25€' },
+                    { name: { al: 'Hardware repair', en: 'Hardware repair' }, price: '50–300€' },
+                    { name: { al: 'Deep cleaning', en: 'Deep cleaning' }, price: '50€' },
+                    { name: { al: 'Thermal paste', en: 'Thermal paste' }, price: '30€' },
+                    { name: { al: 'Upgrade SSD/RAM', en: 'Upgrade SSD/RAM' }, price: '50–150€' },
+                    { name: { al: 'Backup & Cloning', en: 'Backup & Cloning' }, price: '25–80€' },
+                    { name: { al: 'Data Recovery', en: 'Data Recovery' }, price: '50–250€' }
+                ]
+            },
+            {
+                id: 'storage',
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><line x1="6" y1="16" x2="6.01" y2="16"></line><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>`,
+                title: { al: 'Riparim i Ruajtjes (SSD / HDD)', en: 'Storage Repair (SSD / HDD)' },
+                highlight: { al: 'Specialist në riparime të SSD, NVMe dhe HDD me pajisje profesionale.', en: 'Specialist in SSD, NVMe and HDD repairs with professional equipment.' },
+                items: [
+                    { name: { al: 'Diagnostikim', en: 'Diagnostics' }, price: '25€' },
+                    { name: { al: 'SSD/NVMe repair', en: 'SSD/NVMe repair' }, price: '80–250€' },
+                    { name: { al: 'HDD repair', en: 'HDD repair' }, price: '50–200€' },
+                    { name: { al: 'Data recovery', en: 'Data recovery' }, price: '80–300€' }
+                ]
+            },
+            {
+                id: 'cctv',
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+                title: { al: 'Sistemet e Sigurisë & CCTV', en: 'CCTV & Security Systems' },
+                items: [
+                    { name: { al: 'DVR/NVR installation', en: 'DVR/NVR installation' }, price: '50–150€' },
+                    { name: { al: 'IP/Analog camera configuration', en: 'IP/Analog camera configuration' }, price: '50€' },
+                    { name: { al: 'System repair', en: 'System repair' }, price: '50–200€' }
+                ]
+            },
+            {
+                id: 'apple',
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>`,
+                title: { al: 'Pajisje Apple (iPhone, Mac)', en: 'Apple Devices (iPhone, Mac)' },
+                items: [
+                    { name: { al: 'Screen / Ekran', en: 'Screen' }, price: '100–300€' },
+                    { name: { al: 'Logic board / Motherboard', en: 'Logic board' }, price: '150–300€' },
+                    { name: { al: 'Data recovery', en: 'Data recovery' }, price: '100–300€' }
+                ]
+            },
+            {
+                id: 'server',
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
+                title: { al: 'Zgjidhje Server & NAS', en: 'Server & NAS Solutions' },
+                highlight: { al: 'DIY NAS: Zgjidhje të personalizuara (TrueNAS / Unraid) për performancë maksimale.', en: 'DIY NAS: Custom solutions (TrueNAS / Unraid) for maximum performance.' },
+                items: [
+                    { name: { al: 'NAS Setup (Synology / QNAP)', en: 'NAS Setup' }, price: '100–300€' },
+                    { name: { al: 'DIY NAS (custom-built)', en: 'DIY NAS' }, price: '150–500€' },
+                    { name: { al: 'RAID configuration', en: 'RAID configuration' }, price: '100–250€' },
+                    { name: { al: 'Data recovery NAS/RAID', en: 'Data recovery NAS/RAID' }, price: '150–500€' }
+                ]
+            }
+        ];
+
+        let currentLang = 'al';
+
+        function updateUI() {
+            // Update static texts
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    if (key.includes('_html')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+
+            // Update Features
+            const featuresGrid = document.getElementById('features-grid');
+            featuresGrid.innerHTML = '';
+            featuresData.forEach((feat, idx) => {
+                const div = document.createElement('div');
+                div.className = 'fade-in p-8 rounded-3xl glass glass-hover transition-all duration-300 group';
+                div.style.transitionDelay = `${idx * 100}ms`;
+                div.innerHTML = `
+                    <div class="w-12 h-12 rounded-2xl bg-black border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#ff0000]/10 group-hover:border-[#ff0000]/30 transition-all text-white group-hover:text-[#ff0000]">
+                        ${feat.icon}
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-3">${feat[currentLang].t}</h4>
+                    <p class="text-zinc-500 leading-relaxed">${feat[currentLang].d}</p>
+                `;
+                featuresGrid.appendChild(div);
+            });
+
+            // Update Pricing Accordion
+            const pricingAccordion = document.getElementById('pricing-accordion');
+            pricingAccordion.innerHTML = '';
+            pricingData.forEach((cat, idx) => {
+                const div = document.createElement('div');
+                div.className = 'fade-in rounded-3xl overflow-hidden transition-all duration-300 border border-white/10 bg-white/5 hover:border-white/20';
+                div.style.transitionDelay = `${idx * 50}ms`;
+                div.innerHTML = `
+                    <button onclick="toggleAccordion('${cat.id}')" class="w-full px-6 md:px-8 py-6 flex items-center justify-between text-left focus:outline-none group">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 rounded-xl bg-black text-white/70 group-hover:text-white transition-colors">
+                                ${cat.icon}
+                            </div>
+                            <h3 class="text-xl font-bold text-zinc-300 group-hover:text-white transition-colors">${cat.title[currentLang]}</h3>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-semibold tracking-wider uppercase text-[#ff0000]/80 animate-pulse hidden sm:block">${translations[currentLang]['pricing.click']}</span>
+                            <div class="p-1 rounded-full bg-white/5 border border-white/10 group-hover:border-[#ff0000]/50 animate-bounce transition-all">
+                                <svg class="text-zinc-400 group-hover:text-[#ff0000] transition-transform duration-300 arrow-${cat.id}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                            </div>
+                        </div>
+                    </button>
+                    <div id="content-${cat.id}" class="accordion-content px-6 md:px-8">
+                        ${cat.highlight ? `<div class="mb-6 p-4 rounded-2xl bg-[#ff0000]/10 border border-[#ff0000]/20 text-[#ff0000] text-sm">${cat.highlight[currentLang]}</div>` : ''}
+                        <ul class="space-y-3">
+                            ${cat.items.map(item => `
+                                <li class="flex justify-between items-center py-3 border-b border-white/5 last:border-0 group">
+                                    <span class="text-zinc-400 group-hover:text-zinc-200 transition-colors pr-4">${item.name[currentLang]}</span>
+                                    <span class="text-white font-semibold whitespace-nowrap">${item.price}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+                pricingAccordion.appendChild(div);
+            });
+
+            // Trigger re-check for fade-in elements
+            handleScroll();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'al' ? 'en' : 'al';
+            document.getElementById('lang-toggle').textContent = currentLang === 'al' ? 'EN' : 'AL';
+            updateUI();
+        }
+
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const arrow = document.querySelector(`.arrow-${id}`);
+            const isActive = content.classList.contains('active');
+
+            // Close others (optional)
+            document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('[class*="arrow-"]').forEach(el => el.classList.remove('rotate-180'));
+
+            if (!isActive) {
+                content.classList.add('active');
+                arrow.classList.add('rotate-180');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isOpen = !menu.classList.contains('hidden');
+
+            if (isOpen) {
+                menu.classList.add('hidden');
+                icon.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+            } else {
+                menu.classList.remove('hidden');
+                icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+            }
+        }
+
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            updateUI();
+            handleScroll();
+        });
+    </script>
+</body>
+</html>
