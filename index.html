@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIKAservice | Servis Profesional & Premium</title>
+    <title>LIKA service | Servis Profesional & Specialist i Elektronikës</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
             opacity: 0;
         }
         .accordion-content.active {
-            max-height: 3000px;
+            max-height: 4000px;
             opacity: 1;
             padding-bottom: 2rem;
         }
@@ -55,9 +55,9 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(255, 0, 0, 0.15);
         }
-        .premium-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f5f5f7 100%);
-            border: 1px solid rgba(255, 0, 0, 0.1);
+        .highlight-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+            border-left: 4px solid #ff0000;
         }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -81,7 +81,7 @@
                 <a href="#contact" class="text-sm font-medium text-black/70 hover:text-black transition-colors" data-key="nav.contact">Kontakt</a>
                 <div class="h-4 w-px bg-black/10 mx-2"></div>
                 <button onclick="toggleLanguage()" id="lang-toggle" class="text-xs font-bold text-black/50 hover:text-black">EN</button>
-                <a href="tel:+38349585195" class="btn-primary px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                <a href="tel:+38349585195" class="btn-primary px-5 py-2 rounded-full text-sm font-semibold">
                     <span data-key="hero.cta">Na Kontakto</span>
                 </a>
             </div>
@@ -91,45 +91,42 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-white border-b border-black/5 px-6 py-8 flex flex-col gap-6 shadow-xl">
-            <a href="#services" onclick="toggleMobileMenu()" class="text-lg font-medium" data-key="nav.services">Shërbimet</a>
-            <a href="#pricing" onclick="toggleMobileMenu()" class="text-lg font-medium" data-key="nav.pricing">Çmimet</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="text-lg font-medium" data-key="nav.contact">Kontakt</a>
-            <a href="tel:+38349585195" class="btn-primary text-white px-5 py-4 rounded-xl text-center font-semibold" data-key="hero.cta">Na Kontakto Tani</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="text-lg font-medium">Shërbimet</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="text-lg font-medium">Çmimet</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-lg font-medium">Kontakt</a>
+            <a href="tel:+38349585195" class="btn-primary text-white px-5 py-4 rounded-xl text-center font-semibold">Thirr Tani</a>
         </div>
     </nav>
 
     <!-- HERO -->
-    <section class="relative pt-40 pb-20 px-6 flex flex-col items-center justify-center text-center overflow-hidden">
+    <section class="relative pt-40 pb-20 px-6 flex flex-col items-center justify-center text-center">
         <div class="fade-in inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 text-black/60 text-xs font-bold mb-6 tracking-widest uppercase">
-            <span data-key="hero.quality">Kualitet mbi çmim</span>
+            <span>Specialist i Riparimeve të Avancuara</span>
         </div>
         <h1 class="fade-in text-5xl md:text-7xl font-extrabold text-black tracking-tight leading-[1.05] mb-8 max-w-4xl" data-key="hero.headline_html">
-            Servis <span class="text-gradient">Profesional</span><br>për Elektronikë.
+            Zgjidhje <span class="text-gradient">Profesionale</span><br>për pajisjet tuaja.
         </h1>
-        <p class="fade-in text-lg md:text-xl text-black/50 mb-10 leading-relaxed max-w-2xl" data-key="hero.subtext">
-            Specialistë në riparime të avancuara të board-level, microsoldering dhe diagnostikim preciz për laptopë, serverë dhe pajisje Apple.
+        <p class="fade-in text-lg md:text-xl text-black/50 mb-10 leading-relaxed max-w-2xl">
+            Nga mikrosoldering te serverat DIY NAS – shërbime të specializuara me pajisje profesionale dhe saktësi maksimale.
         </p>
         <div class="fade-in flex flex-col sm:flex-row gap-4">
             <a href="tel:+38349585195" class="btn-primary px-10 py-4 rounded-full font-bold flex items-center justify-center gap-2">
-                <span data-key="hero.cta">Na Kontakto Tani</span>
+                <span>Rezervo Shërbimin</span>
             </a>
-            <a href="#pricing" class="px-10 py-4 bg-black/5 text-black rounded-full font-bold hover:bg-black/10 transition-colors text-center" data-key="nav.pricing">Shiko Çmimet</a>
+            <a href="#pricing" class="px-10 py-4 bg-black/5 text-black rounded-full font-bold hover:bg-black/10 transition-colors text-center">Lista e Çmimeve</a>
         </div>
     </section>
 
-    <!-- POLICY SECTION -->
+    <!-- MAIN POLICY -->
     <section class="px-6 py-10">
         <div class="fade-in max-w-5xl mx-auto">
-            <div class="rounded-3xl bg-white border border-red-500/10 p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm premium-card">
+            <div class="rounded-3xl bg-white border border-black/5 p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm">
                 <div class="w-14 h-14 rounded-2xl bg-[#ff0000]/10 flex items-center justify-center flex-shrink-0">
-                    <svg class="text-[#ff0000]" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    <svg class="text-[#ff0000]" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
-                <div class="flex-1">
-                    <h3 class="text-xl font-bold text-black mb-1" data-key="policy.title">Politika e Shërbimit</h3>
-                    <div class="space-y-1">
-                        <p class="text-black font-semibold">25€ Tarifa Fillestare <span class="text-black/40 font-normal">(e pakthyeshme)</span></p>
-                        <p class="text-black/50 text-sm" data-key="policy.desc">Përfshin diagnostikimin e plotë profesional. Pagesa e mbetur kryhet pas përfundimit të suksesshëm të shërbimit.</p>
-                    </div>
+                <div>
+                    <h3 class="text-xl font-bold text-black mb-1">Diagnostikimi & Pagesa</h3>
+                    <p class="text-black/50"><strong>25€ Tarifa fillestare</strong> (e pakthyeshme) për çdo diagnostikim profesional. Pagesa e plotë e servisit kryhet vetëm pas përfundimit të riparimit.</p>
                 </div>
             </div>
         </div>
@@ -139,11 +136,11 @@
     <section id="pricing" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="fade-in text-center mb-16">
-                <h2 class="text-4xl font-bold text-black mb-4" data-key="pricingHeading">Katalogu i Shërbimeve</h2>
-                <p class="text-black/50" data-key="pricingSubtext">Zgjidhni një kategori për të parë listën e detajuar të çmimeve dhe ekspertizën tonë.</p>
+                <h2 class="text-4xl font-bold text-black mb-4" data-key="pricingHeading">Shërbimet tona</h2>
+                <p class="text-black/50">Lista e plotë e shërbimeve të specializuara dhe çmimet bazë.</p>
             </div>
             <div id="pricing-accordion" class="space-y-4">
-                <!-- Injected via JS -->
+                <!-- Data will be injected here -->
             </div>
         </div>
     </section>
@@ -152,7 +149,7 @@
     <section id="contact" class="py-24 px-6 bg-white border-t border-black/5">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
             <div class="fade-in">
-                <h2 class="text-3xl font-bold text-black mb-10" data-key="contactHeading">Na Kontaktoni</h2>
+                <h2 class="text-3xl font-bold text-black mb-10">Na Kontaktoni</h2>
                 <div class="space-y-8">
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center flex-shrink-0 text-[#ff0000]">
@@ -165,188 +162,137 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center flex-shrink-0 text-[#ff0000]">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-black/40 uppercase tracking-widest mb-1">Adresa</p>
-                            <p class="text-xl font-semibold text-black">Fushë Kosovë, Kosovë</p>
+                            <p class="text-xs font-bold text-black/40 uppercase tracking-widest mb-1">Orari</p>
+                            <p class="text-xl font-semibold text-black">Hënë - Premte: 08:00 - 16:00</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="fade-in bg-[#f5f5f7] rounded-[2rem] p-10 text-center border border-black/5 shadow-sm">
-                <h3 class="text-2xl font-bold mb-4" data-key="footer.ctaTitle">Gati për riparim?</h3>
-                <p class="text-black/50 mb-8" data-key="footer.ctaDesc">Na dërgoni një mesazh për të rezervuar diagnostikimin.</p>
-                <div class="flex flex-col gap-3">
-                    <a href="tel:+38349585195" class="btn-primary py-4 rounded-xl font-bold text-lg">Thirrni Tani</a>
-                    <a href="https://wa.me/38349585195" target="_blank" class="bg-white text-black border border-black/10 py-4 rounded-xl font-bold text-lg hover:bg-white/80 transition-all">WhatsApp</a>
-                </div>
+            <div class="fade-in bg-[#f5f5f7] rounded-[2rem] p-10 text-center border border-black/5">
+                <h3 class="text-2xl font-bold mb-4">Nevojë për ndihmë?</h3>
+                <p class="text-black/50 mb-8">Për çdo pyetje rreth çmimeve apo shërbimeve specifike, na shkruani në WhatsApp.</p>
+                <a href="https://wa.me/38349585195" class="btn-primary block py-4 rounded-xl font-bold text-lg">Dërgo Mesazh</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="py-12 text-center text-black/40 text-xs border-t border-black/5">
-        <p>&copy; <span id="year"></span> LIKAservice. Profesionistë në Elektronikë.</p>
+        <p>&copy; <span id="year"></span> LIKA service. Të gjitha të drejtat të rezervuara.</p>
     </footer>
 
-    <!-- SCRIPT -->
     <script>
         const translations = {
             al: {
-                "nav.services": "Shërbimet",
-                "nav.pricing": "Çmimet",
-                "nav.contact": "Kontakt",
-                "hero.cta": "Na Kontakto",
-                "hero.quality": "Kualitet mbi çmim",
-                "hero.headline_html": `Servis <span class="text-gradient">Profesional</span><br>për Elektronikë.`,
-                "hero.subtext": "Specialistë në riparime të avancuara të board-level, microsoldering dhe diagnostikim preciz për laptopë, serverë dhe pajisje Apple.",
-                "policy.title": "Politika e Shërbimit",
-                "policy.desc": "Përfshin diagnostikimin e plotë profesional. Pagesa e mbetur kryhet pas përfundimit të suksesshëm të shërbimit.",
-                "pricingHeading": "Katalogu i Shërbimeve",
-                "pricingSubtext": "Zgjidhni një kategori për të parë listën e detajuar të çmimeve dhe ekspertizën tonë.",
-                "footer.ctaTitle": "Gati për riparim?",
-                "footer.ctaDesc": "Na dërgoni një mesazh për të rezervuar diagnostikimin."
+                "nav.services": "Shërbimet", "nav.pricing": "Çmimet", "nav.contact": "Kontakt",
+                "hero.headline_html": `Zgjidhje <span class="text-gradient">Profesionale</span><br>për pajisjet tuaja.`,
+                "pricingHeading": "Shërbimet tona", "hero.cta": "Na Kontakto"
             },
             en: {
-                "nav.services": "Services",
-                "nav.pricing": "Pricing",
-                "nav.contact": "Contact",
-                "hero.cta": "Contact Us",
-                "hero.quality": "Quality over price",
-                "hero.headline_html": `Professional <span class="text-gradient">Service</span><br>for Electronics.`,
-                "hero.subtext": "Specialists in advanced logic board repairs, microsoldering, and precise diagnostics for laptops, servers, and Apple devices.",
-                "policy.title": "Service Policy",
-                "policy.desc": "Includes full professional diagnostics. Remaining payment is made after successful service completion.",
-                "pricingHeading": "Service Catalog",
-                "pricingSubtext": "Choose a category to view detailed pricing and our expertise.",
-                "footer.ctaTitle": "Ready for repair?",
-                "footer.ctaDesc": "Send us a message to book your diagnostics."
+                "nav.services": "Services", "nav.pricing": "Pricing", "nav.contact": "Contact",
+                "hero.headline_html": `Professional <span class="text-gradient">Solutions</span><br>for your devices.`,
+                "pricingHeading": "Our Services", "hero.cta": "Contact Us"
             }
         };
 
         const pricingData = [
             {
-                id: 'comp',
-                icon: '💻',
-                title: { al: 'Kompjuterë & Laptopë', en: 'Computers & Laptops' },
+                id: 'comp', icon: '💻', title: { al: 'Computer & Laptop Repair', en: 'Computer & Laptop Repair' },
                 items: [
-                    { name: { al: 'Formatizim Windows XP–8.1', en: 'Formatting Windows XP–8.1' }, price: '30€' },
-                    { name: { al: 'Formatizim Windows 10', en: 'Formatting Windows 10' }, price: '45€' },
-                    { name: { al: 'Formatizim Windows 11', en: 'Formatting Windows 11' }, price: '50€' },
-                    { name: { al: 'macOS versione të vjetra', en: 'macOS older versions' }, price: '30€' },
-                    { name: { al: 'macOS versionet e fundit', en: 'macOS latest versions' }, price: '100€' },
-                    { name: { al: 'Diagnostikim i avancuar', en: 'Advanced diagnostics' }, price: '25€' },
-                    { name: { al: 'Riparim Hardware', en: 'Hardware repair' }, price: '50€–300€' },
-                    { name: { al: 'Pastrim i thellë', en: 'Deep cleaning' }, price: '50€' },
-                    { name: { al: 'Termopastë', en: 'Thermal paste' }, price: '30€' },
-                    { name: { al: 'Upgrade SSD/RAM', en: 'Upgrade SSD/RAM' }, price: '50€–150€' },
-                    { name: { al: 'Backup & Klonim', en: 'Backup & Cloning' }, price: '25€–80€' },
-                    { name: { al: 'Kthimi i të dhënave (Data Recovery)', en: 'Data Recovery' }, price: '50€–250€' }
+                    { n: { al: 'Formatizim Windows XP–8.1', en: 'Format Windows XP–8.1' }, p: '30€' },
+                    { n: { al: 'Formatizim Windows 10', en: 'Format Windows 10' }, p: '45€' },
+                    { n: { al: 'Formatizim Windows 11', en: 'Format Windows 11' }, p: '50€' },
+                    { n: { al: 'macOS versione të vjetra', en: 'macOS older versions' }, p: '30€' },
+                    { n: { al: 'macOS versionet e fundit', en: 'macOS latest versions' }, p: '100€' },
+                    { n: { al: 'Diagnostikim i avancuar', en: 'Advanced diagnostics' }, p: '25€' },
+                    { n: { al: 'Hardware repair', en: 'Hardware repair' }, p: '50–300€' },
+                    { n: { al: 'Deep cleaning', en: 'Deep cleaning' }, p: '50€' },
+                    { n: { al: 'Thermal paste', en: 'Thermal paste' }, p: '30€' },
+                    { n: { al: 'Upgrade SSD/RAM', en: 'Upgrade SSD/RAM' }, p: '50–150€' },
+                    { n: { al: 'Backup & Cloning', en: 'Backup & Cloning' }, p: '25–80€' },
+                    { n: { al: 'Data Recovery', en: 'Data Recovery' }, p: '50–250€' }
                 ]
             },
             {
-                id: 'storage',
-                icon: '💾',
-                title: { al: 'Storage (SSD / HDD / NVMe)', en: 'Storage Devices' },
-                highlight: { 
-                    al: 'Specialist në riparime të SSD, NVMe dhe HDD me pajisje profesionale.',
-                    en: 'Specialist in SSD, NVMe and HDD repairs with professional equipment.'
-                },
+                id: 'storage', icon: '💾', title: { al: 'Storage Repair (SSD / HDD / NVMe)', en: 'Storage Repair' },
+                highlight: { al: 'Specialist në riparime të SSD, NVMe dhe HDD me pajisje profesionale', en: 'Specialist in SSD, NVMe and HDD repairs with professional equipment' },
                 items: [
-                    { name: { al: 'Diagnostikim', en: 'Diagnostics' }, price: '25€' },
-                    { name: { al: 'Riparim SSD/NVMe', en: 'SSD/NVMe repair' }, price: '80€–250€' },
-                    { name: { al: 'Riparim HDD', en: 'HDD repair' }, price: '50€–200€' },
-                    { name: { al: 'Kthimi i të dhënave (Data Recovery)', en: 'Data recovery' }, price: '80€–300€' },
-                    { name: { al: 'Migrim i Sistemit (OS migration)', en: 'OS migration' }, price: '50€' }
+                    { n: { al: 'Diagnostikim', en: 'Diagnostics' }, p: '25€' },
+                    { n: { al: 'SSD/NVMe repair', en: 'SSD/NVMe repair' }, p: '80–250€' },
+                    { n: { al: 'HDD repair', en: 'HDD repair' }, p: '50–200€' },
+                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '80–300€' },
+                    { n: { al: 'OS migration', en: 'OS migration' }, p: '50€' }
                 ]
             },
             {
-                id: 'apple',
-                icon: '🍎',
-                title: { al: 'Pajisje Apple (iPhone, iPad, Mac)', en: 'Apple Devices' },
+                id: 'watch', icon: '⌚', title: { al: 'Smartwatch Repair & Services', en: 'Smartwatch Repair' },
+                highlight: { al: 'Specialist në riparime smartwatch me pajisje profesionale dhe diagnostikim preciz', en: 'Smartwatch specialist with professional tools and precise diagnostics' },
                 items: [
-                    { name: { al: 'Ekran (Screen)', en: 'Screen' }, price: '100€–300€' },
-                    { name: { al: 'Bateri (Battery)', en: 'Battery' }, price: '80€–150€' },
-                    { name: { al: 'Logic board (Board-level repair)', en: 'Logic board' }, price: '150€–300€' },
-                    { name: { al: 'Riparim macOS', en: 'macOS repair' }, price: '50€–150€' },
-                    { name: { al: 'Kthimi i të dhënave (Apple)', en: 'Data recovery' }, price: '100€–300€' }
+                    { n: { al: 'Screen / Display', en: 'Screen / Display' }, p: '50–150€' },
+                    { n: { al: 'Battery', en: 'Battery' }, p: '50–100€' },
+                    { n: { al: 'Charging issues', en: 'Charging issues' }, p: '50–80€' },
+                    { n: { al: 'Water damage', en: 'Water damage' }, p: '50–150€' },
+                    { n: { al: 'Software / Firmware update', en: 'Software update' }, p: '30–80€' },
+                    { n: { al: 'Diagnostics / Troubleshooting', en: 'Diagnostics' }, p: '25–50€' }
                 ]
             },
             {
-                id: 'mobile',
-                icon: '📱',
-                title: { al: 'Smartphone & Tablet (Android)', en: 'Smartphone & Tablet' },
+                id: 'apple', icon: '🍎', title: { al: 'Apple Devices (iPhone, iPad, Mac)', en: 'Apple Devices' },
                 items: [
-                    { name: { al: 'Ekran (Screen)', en: 'Screen' }, price: '50€–250€' },
-                    { name: { al: 'Bateri (Battery)', en: 'Battery' }, price: '50€–120€' },
-                    { name: { al: 'Porti i mbushjes (Charging port)', en: 'Charging port' }, price: '50€–100€' },
-                    { name: { al: 'Pllaka amë (Motherboard)', en: 'Motherboard' }, price: '100€–300€' },
-                    { name: { al: 'Dëmtime nga uji', en: 'Water damage' }, price: '80€–250€' },
-                    { name: { al: 'Software repair', en: 'Software repair' }, price: '50€' },
-                    { name: { al: 'Kthimi i të dhënave', en: 'Data recovery' }, price: '50€–200€' }
+                    { n: { al: 'Screen', en: 'Screen' }, p: '100–300€' },
+                    { n: { al: 'Battery', en: 'Battery' }, p: '80–150€' },
+                    { n: { al: 'Logic board', en: 'Logic board' }, p: '150–300€' },
+                    { n: { al: 'macOS repair', en: 'macOS repair' }, p: '50–150€' },
+                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '100–300€' }
                 ]
             },
             {
-                id: 'server',
-                icon: '🛡️',
-                title: { al: 'Server & NAS Setup (Premium)', en: 'Server & NAS Setup' },
+                id: 'phone', icon: '📱', title: { al: 'Smartphone & Tablet Repair', en: 'Smartphone Repair' },
                 items: [
-                    { name: { al: 'NAS Setup (Synology, QNAP)', en: 'NAS Setup' }, price: '100€–300€' },
-                    { name: { al: 'DIY NAS (custom-built)', en: 'DIY NAS' }, price: '150€–500€' },
-                    { name: { al: 'Custom PC server', en: 'Custom PC server' }, price: '150€–400€' },
-                    { name: { al: 'Konfigurim RAID', en: 'RAID configuration' }, price: '100€–250€' },
-                    { name: { al: 'Network storage', en: 'Network storage' }, price: '80€–200€' },
-                    { name: { al: 'User permissions', en: 'User permissions' }, price: '50€–150€' }
+                    { n: { al: 'Screen', en: 'Screen' }, p: '50–250€' },
+                    { n: { al: 'Battery', en: 'Battery' }, p: '50–120€' },
+                    { n: { al: 'Charging port', en: 'Charging port' }, p: '50–100€' },
+                    { n: { al: 'Motherboard repair', en: 'Motherboard repair' }, p: '100–300€' },
+                    { n: { al: 'Water damage', en: 'Water damage' }, p: '80–250€' },
+                    { n: { al: 'Software repair', en: 'Software repair' }, p: '50€' },
+                    { n: { al: 'Data recovery', en: 'Data recovery' }, p: '50–200€' }
                 ]
             },
             {
-                id: 'nas-special',
-                icon: '⚡',
-                title: { al: 'DIY NAS Special Highlight', en: 'DIY NAS Special' },
-                highlight: { 
-                    al: 'Zgjidhje të personalizuara për performancë maksimale dhe fleksibilitet të plotë (TrueNAS / Unraid / Linux).',
-                    en: 'Custom solutions for maximum performance and full flexibility (TrueNAS / Unraid / Linux).'
-                },
+                id: 'server', icon: '🖥️', title: { al: 'Server & NAS Solutions (Advanced)', en: 'Server & NAS Solutions' },
+                highlight: { al: 'DIY NAS: Build from scratch (TrueNAS / Unraid / Linux). Zgjidhje të personalizuara për performancë maksimale.', en: 'DIY NAS Specialist: Performance tuning & Secure remote access.' },
                 items: [
-                    { name: { al: 'Build from scratch', en: 'Build from scratch' }, price: 'Varies' },
-                    { name: { al: 'Performance tuning', en: 'Performance tuning' }, price: 'Varies' },
-                    { name: { al: 'Secure remote access (VPN)', en: 'Secure remote access' }, price: '80€–200€' }
+                    { n: { al: 'NAS Setup (Synology / QNAP)', en: 'NAS Setup' }, p: '100–300€' },
+                    { n: { al: 'DIY NAS (custom-built)', en: 'DIY NAS' }, p: '150–500€' },
+                    { n: { al: 'Custom PC server', en: 'Custom PC server' }, p: '150–400€' },
+                    { n: { al: 'RAID configuration', en: 'RAID configuration' }, p: '100–250€' },
+                    { n: { al: 'Network storage setup', en: 'Network storage' }, p: '80–200€' },
+                    { n: { al: 'User permissions', en: 'User permissions' }, p: '50–150€' },
+                    { n: { al: 'Diagnostics', en: 'Diagnostics' }, p: '50€' },
+                    { n: { al: 'Troubleshooting', en: 'Troubleshooting' }, p: '80–250€' },
+                    { n: { al: 'Data recovery NAS/RAID', en: 'Data recovery' }, p: '150–500€' }
                 ]
             },
             {
-                id: 'server-maint',
-                icon: '🛠️',
-                title: { al: 'Server Repair & Maintenance', en: 'Server Maintenance' },
+                id: 'cctv', icon: '👁️', title: { al: 'CCTV & Security Systems', en: 'CCTV & Security' },
                 items: [
-                    { name: { al: 'Diagnostikim Serveri', en: 'Server Diagnostics' }, price: '50€' },
-                    { name: { al: 'Troubleshooting', en: 'Troubleshooting' }, price: '80€–250€' },
-                    { name: { al: 'RAID & storage repair', en: 'RAID & storage repair' }, price: '100€–300€' },
-                    { name: { al: 'Kthimi i të dhënave (NAS/RAID)', en: 'Data recovery' }, price: '150€–500€' },
-                    { name: { al: 'Backup repair', en: 'Backup repair' }, price: '80€–200€' }
+                    { n: { al: 'DVR/NVR installation', en: 'DVR/NVR installation' }, p: '50–150€' },
+                    { n: { al: 'IP/Analog camera configuration', en: 'Camera configuration' }, p: '50€' },
+                    { n: { al: 'System repair', en: 'System repair' }, p: '50–200€' },
+                    { n: { al: 'Cabling & signal', en: 'Cabling & signal' }, p: '50€' },
+                    { n: { al: 'Remote access', en: 'Remote access' }, p: '50€' }
                 ]
             },
             {
-                id: 'cctv',
-                icon: '👁️',
-                title: { al: 'CCTV & Sistemet e Sigurisë', en: 'CCTV & Security' },
+                id: 'backup', icon: '🔄', title: { al: 'Backup & Automation', en: 'Backup & Automation' },
                 items: [
-                    { name: { al: 'Instalim DVR/NVR', en: 'DVR/NVR installation' }, price: '50€–150€' },
-                    { name: { al: 'IP/Analog camera configuration', en: 'Camera configuration' }, price: '50€' },
-                    { name: { al: 'Riparim i Sistemit', en: 'System repair' }, price: '50€–200€' },
-                    { name: { al: 'Kabllimi & sinjali', en: 'Cabling & signal' }, price: '50€' },
-                    { name: { al: 'Remote access (Mobile access)', en: 'Remote access' }, price: '50€' }
-                ]
-            },
-            {
-                id: 'automation',
-                icon: '🔄',
-                title: { al: 'Backup & Automation', en: 'Backup & Automation' },
-                items: [
-                    { name: { al: 'Automatic backup setup', en: 'Automatic backup' }, price: '80€–200€' },
-                    { name: { al: 'Cloud sync', en: 'Cloud sync' }, price: '50€–150€' },
-                    { name: { al: 'Remote access (VPN)', en: 'Remote access (VPN)' }, price: '80€–200€' }
+                    { n: { al: 'Automatic backup', en: 'Automatic backup' }, p: '80–200€' },
+                    { n: { al: 'Cloud sync', en: 'Cloud sync' }, p: '50–150€' },
+                    { n: { al: 'Remote access VPN', en: 'Remote access VPN' }, p: '80–200€' }
                 ]
             }
         ];
@@ -362,13 +308,14 @@
                 }
             });
 
-            const pricingAccordion = document.getElementById('pricing-accordion');
-            pricingAccordion.innerHTML = '';
+            const accordion = document.getElementById('pricing-accordion');
+            accordion.innerHTML = '';
+            
             pricingData.forEach(cat => {
                 const div = document.createElement('div');
-                div.className = 'fade-in rounded-3xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow';
+                div.className = 'fade-in rounded-3xl border border-black/5 bg-white overflow-hidden shadow-sm';
                 div.innerHTML = `
-                    <button onclick="toggleAccordion('${cat.id}')" class="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/[0.01] transition-colors">
+                    <button onclick="toggleAccordion('${cat.id}')" class="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/[0.01]">
                         <div class="flex items-center gap-4">
                             <span class="text-2xl">${cat.icon}</span>
                             <h3 class="text-lg font-bold text-black">${cat.title[currentLang]}</h3>
@@ -376,30 +323,20 @@
                         <svg class="text-black/20 transform transition-transform duration-300 arrow-${cat.id}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                     </button>
                     <div id="content-${cat.id}" class="accordion-content px-8">
-                        ${cat.highlight ? `
-                            <div class="mb-4 p-4 rounded-2xl bg-red-50 border border-red-100 text-[#ff0000] text-sm font-medium">
-                                ${cat.highlight[currentLang]}
-                            </div>
-                        ` : ''}
+                        ${cat.highlight ? `<div class="mb-4 p-4 rounded-2xl highlight-box text-sm font-medium text-black/70">${cat.highlight[currentLang]}</div>` : ''}
                         <ul class="space-y-1">
                             ${cat.items.map(item => `
                                 <li class="flex justify-between items-center py-4 border-b border-black/5 last:border-0">
-                                    <span class="text-black/60 text-sm md:text-base">${item.name[currentLang]}</span>
-                                    <span class="font-bold text-black whitespace-nowrap ml-4">${item.price}</span>
+                                    <span class="text-black/60 text-sm md:text-base">${item.n[currentLang]}</span>
+                                    <span class="font-bold text-black whitespace-nowrap ml-4">${item.p}</span>
                                 </li>
                             `).join('')}
                         </ul>
                     </div>
                 `;
-                pricingAccordion.appendChild(div);
+                accordion.appendChild(div);
             });
             handleScroll();
-        }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'al' ? 'en' : 'al';
-            document.getElementById('lang-toggle').textContent = currentLang === 'al' ? 'EN' : 'AL';
-            updateUI();
         }
 
         function toggleAccordion(id) {
@@ -416,13 +353,19 @@
             }
         }
 
+        function toggleLanguage() {
+            currentLang = currentLang === 'al' ? 'en' : 'al';
+            document.getElementById('lang-toggle').textContent = currentLang === 'al' ? 'EN' : 'AL';
+            updateUI();
+        }
+
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
         function handleScroll() {
             document.querySelectorAll('.fade-in').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
                     el.classList.add('visible');
                 }
             });
