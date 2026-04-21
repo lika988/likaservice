@@ -59,10 +59,53 @@
             background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
             border-left: 4px solid #ff0000;
         }
+        
+        /* Scrollbar styles */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #d1d1d1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #ff0000; }
+
+        /* Chat Widget Specific */
+        .chat-open { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto; }
+        .chat-closed { transform: scale(0.95) translateY(20px); opacity: 0; pointer-events: none; }
+        .dot-flashing {
+            position: relative;
+            width: 6px;
+            height: 6px;
+            border-radius: 5px;
+            background-color: #ff0000;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 5px;
+            background-color: #ff0000;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 5px;
+            background-color: #ff0000;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+        @keyframes dot-flashing {
+            0% { background-color: #ff0000; }
+            50%, 100% { background-color: rgba(255, 0, 0, 0.2); }
+        }
     </style>
 </head>
 <body class="selection:bg-[#ff0000]/10 selection:text-[#ff0000]">
@@ -99,7 +142,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="relative pt-40 pb-20 px-6 flex flex-col items-center justify-center text-center">
+    <section id="services" class="relative pt-40 pb-20 px-6 flex flex-col items-center justify-center text-center">
         <div class="fade-in inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 text-black/60 text-xs font-bold mb-6 tracking-widest uppercase">
             <span>Specialist i Riparimeve të Avancuara</span>
         </div>
@@ -174,8 +217,8 @@
             
             <div class="fade-in bg-[#f5f5f7] rounded-[2rem] p-10 text-center border border-black/5">
                 <h3 class="text-2xl font-bold mb-4">Nevojë për ndihmë?</h3>
-                <p class="text-black/50 mb-8">Për çdo pyetje rreth çmimeve apo shërbimeve specifike, na shkruani në WhatsApp.</p>
-                <a href="https://wa.me/38349585195" class="btn-primary block py-4 rounded-xl font-bold text-lg">Dërgo Mesazh</a>
+                <p class="text-black/50 mb-8">Për çdo pyetje rreth çmimeve apo shërbimeve specifike, na shkruani në WhatsApp ose pyesni asistentin tonë virtual.</p>
+                <a href="https://wa.me/38349585195" class="btn-primary block py-4 rounded-xl font-bold text-lg">Dërgo Mesazh n'WhatsApp</a>
             </div>
         </div>
     </section>
@@ -185,7 +228,53 @@
         <p>&copy; <span id="year"></span> LIKAservice. Të gjitha të drejtat të rezervuara.</p>
     </footer>
 
+    <!-- AI CHATBOT WIDGET -->
+    <div id="ai-chat-container" class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end">
+        
+        <!-- Chat Window -->
+        <div id="ai-chat-window" class="chat-closed w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-black/10 overflow-hidden mb-4 flex-col transition-all duration-300 absolute bottom-16 right-0 h-[480px] flex">
+            <!-- Header -->
+            <div class="bg-black p-4 flex justify-between items-center text-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#ff0000] flex items-center justify-center font-bold text-white shadow-lg">L</div>
+                    <div>
+                        <h4 class="font-bold text-sm leading-tight">AI Asistenti LIKA</h4>
+                        <p class="text-[10px] text-white/70 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                        </p>
+                    </div>
+                </div>
+                <button onclick="toggleAIChat()" class="text-white/70 hover:text-white transition-colors p-1">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="ai-chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-4 text-sm scroll-smooth">
+                <!-- Bot Welcome Message -->
+                <div class="self-start bg-white border border-black/5 text-black p-3 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm">
+                    Tungjatjeta! 👋 Jam asistenti virtual i LIKAservice.<br><br>Qysh mundem me ju ndihmu sot rreth çmimeve apo riparimeve tona?
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-3 bg-white border-t border-black/5 flex gap-2">
+                <input type="text" id="ai-chat-input" placeholder="Shkruaj pyetjen tënde..." class="flex-1 px-4 py-2.5 bg-gray-100 border border-transparent focus:bg-white focus:border-[#ff0000] rounded-xl outline-none transition-all text-sm" onkeypress="if(event.key === 'Enter') sendAIMessage()">
+                <button onclick="sendAIMessage()" class="bg-[#ff0000] hover:bg-[#cc0000] text-white p-2.5 rounded-xl transition-all flex items-center justify-center shadow-md active:scale-95">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleAIChat()" id="ai-chat-toggle-btn" class="bg-[#ff0000] hover:bg-[#cc0000] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 border-2 border-white">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+
+    </div>
+
     <script>
+        // --- EXISTING WEBSITE LOGIC ---
         const translations = {
             al: {
                 "nav.services": "Shërbimet", "nav.pricing": "Çmimet", "nav.contact": "Kontakt",
@@ -387,6 +476,139 @@
             document.getElementById('year').textContent = new Date().getFullYear();
             updateUI();
         };
+
+        // --- AI CHATBOT LOGIC ---
+        
+        let isAIChatOpen = false;
+        let aiChatHistory = []; // Keeps track of conversation context
+        const apiKey = ""; // API key is handled automatically by the environment
+
+        // Strict system prompt enforcing Kosovar Geg dialect and service details
+        const systemPrompt = `
+Ti je asistenti virtual zyrtar i 'LIKAservice', një servis profesional i elektronikës në Kosovë (Prishtinë/Kosovë).
+Detyra jote asht me ju ndihmu klientëve me informata rreth shërbimeve dhe çmimeve tona.
+
+RREGULLI ABSOLUT: Fol GJITHMONË në dialektin e Kosovës (Gegnisht), me një ton profesional dhe mikpritës.
+Përdor shprehje origjinale si: "Tungjatjeta", "Qysh mundem me ju ndihmu?", "Çmimi asht", "Mundeni me e pru pajisjen n'servis", "Ju mirëpresim", "Faleminderit".
+Mos e përdor gjuhën standarte artificiale, por fol si një profesionist kosovar i vërtetë!
+
+TË DHËNAT E SERVISIT:
+- Tarifa e Diagnostikimit: 25€ (e pakthyeshme). Paguhet vetëm si fillim, dhe nëse bahet riparimi, ajo perfshihet ose rregullohet n'baze te marreveshjes se bashku.
+- Orari i punës: Hënë - Premte, 08:00 - 16:00.
+- Numri i Kontaktit / WhatsApp: +383 49 585 195.
+
+ÇMIMET E RIPARIMEVE (Kur jep çmim me interval, trego që mundet me ndryshu pak varësisht prej modelit të saktë dhe dëmtimit):
+- Pajisjet Apple (iPhone, Mac, iPad): Ekrani 100-300€, Bateria 80-150€, Pllaka Amë (Micro-soldering) 150-300€, Rikthim i të dhënave 100-300€.
+- Telefona dhe Tableta (Android): Ekrani 50-250€, Bateria 50-120€, Porti mbushjes 50-100€, Riparim nga uji 80-250€.
+- Llaptoppa & Kompjutera: Formatizim (Windows 10/11) 45-50€, Pastrim i thellë me pastë termike rreth 50€, Riparime harduerike 50-300€, Ndërrim SSD/RAM 50-150€.
+- Smartwatch (Orë të mençura): Ekrani 50-150€, Bateria 50-100€, Pastrim nga uji 50-150€.
+- Servera & NAS: Instalimi fillestar i NAS 100-300€, Custom NAS DIY 150-500€, Rikthim i të dhënave (Data Recovery Server/RAID) 150-500€.
+- Ruajtja e të dhënave (SSD/HDD): Riparim SSD/HDD fizik 50-250€, Data Recovery profesionale 80-300€.
+- Tjera (CCTV, TV Box): Instalimi i kamerave CCTV 50-150€, Riparim Android Box / Apple TV 15-100€.
+
+Nëse klienti pyet për diçka shumë specifike ose që s'e din, thuaj: "Për këtë rast asht ma mirë me kontaktu teknikun tonë kryesor në WhatsApp (+383 49 585 195) ose me e pru pajisjen n'servis për ni diagnostikim të saktë."
+Përgjigju shkurt, mos u zgjat shumë në tekst. Ji shumë i sjellshëm dhe gjithmonë fol gegnisht.
+        `;
+
+        function toggleAIChat() {
+            const windowEl = document.getElementById('ai-chat-window');
+            isAIChatOpen = !isAIChatOpen;
+            
+            if (isAIChatOpen) {
+                windowEl.classList.remove('chat-closed');
+                windowEl.classList.add('chat-open');
+                document.getElementById('ai-chat-input').focus();
+            } else {
+                windowEl.classList.remove('chat-open');
+                windowEl.classList.add('chat-closed');
+            }
+        }
+
+        function appendMessage(role, text) {
+            const chatMessages = document.getElementById('ai-chat-messages');
+            const msgDiv = document.createElement('div');
+            
+            if (role === 'user') {
+                msgDiv.className = 'self-end bg-black text-white p-3 rounded-2xl rounded-tr-sm max-w-[85%] shadow-sm';
+                msgDiv.textContent = text;
+            } else {
+                msgDiv.className = 'self-start bg-white border border-black/5 text-black p-3 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm';
+                msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            }
+            
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addTypingIndicator() {
+            const chatMessages = document.getElementById('ai-chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'ai-typing-indicator';
+            typingDiv.className = 'self-start bg-white border border-black/5 p-4 rounded-2xl rounded-tl-sm shadow-sm flex items-center h-10 w-16';
+            typingDiv.innerHTML = '<div class="dot-flashing ml-3"></div>';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('ai-typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        async function fetchGeminiAPI(retries = 5) {
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: aiChatHistory,
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                    
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    if (i === retries - 1) return "Kërkoj ndjesë, për momentin kam nji problem teknik. Ju lutem na shkruani direkt n'WhatsApp (+383 49 585 195).";
+                    await new Promise(res => setTimeout(res, Math.pow(2, i) * 1000));
+                }
+            }
+        }
+
+        async function sendAIMessage() {
+            const inputEl = document.getElementById('ai-chat-input');
+            const message = inputEl.value.trim();
+            if (!message) return;
+
+            // Clear input and show user message
+            inputEl.value = '';
+            appendMessage('user', message);
+            
+            // Add user message to history
+            aiChatHistory.push({ role: "user", parts: [{ text: message }] });
+            
+            // Show typing animation
+            addTypingIndicator();
+
+            // Fetch AI Response
+            const botReply = await fetchGeminiAPI();
+            
+            // Hide typing animation
+            removeTypingIndicator();
+            
+            if(botReply) {
+                // Add bot message to UI and history
+                appendMessage('bot', botReply);
+                aiChatHistory.push({ role: "model", parts: [{ text: botReply }] });
+            }
+        }
     </script>
 </body>
 </html>
